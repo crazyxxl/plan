@@ -1,0 +1,75 @@
+<div class="content__title">
+</div>
+<nz-card>
+    <form nz-form>
+        <div nz-row nz-form-item [nzGutter]="16">
+            <div nz-row nz-form-item>
+                <div nz-form-label>
+                    <label>表格菜单/树形菜单</label>
+                </div>
+                <div nz-form-control>
+                    <nz-switch [(ngModel)]="showTree" [ngModelOptions]="{standalone: true}"></nz-switch>
+                </div>
+            </div>
+        </div>
+    </form>
+</nz-card>
+<div nz-row [nzGutter]="16" >
+    <div nz-col [nzMd]="24">
+        <nz-card *ngIf="!showTree">
+            <nz-table #nzTable
+                [nzAjaxData]="list"
+                [nzShowSizeChanger]="true"
+                [nzLoading]="loading"
+                [nzBordered]="true"
+                [nzTotal]="total"
+                [(nzPageIndex)]="pi"
+                (nzPageIndexChange)="load()"
+                [(nzPageSize)]="ps"
+                (nzPageSizeChange)="load()">
+                <thead nz-thead>
+                    <tr>
+                        <th nz-th [nzCheckbox]="true">
+                            <label nz-checkbox
+                                [(ngModel)]="_allChecked" [nzIndeterminate]="_indeterminate"
+                                (ngModelChange)="_checkAll()">
+                            </label>
+                        </th>
+                        <th nz-th><span>Name</span></th>
+                        <th nz-th><span>Type</span></th>
+                        <th nz-th><span>Value</span></th>
+                        <th nz-th><span>Url</span></th>
+                        <th nz-th><span>Icon</span></th>
+                        <th nz-th><span>Translate</span></th>
+                        <th nz-th><span>Link</span></th>
+                        <th nz-th><span>Registered</span></th>
+                    </tr>
+                </thead>
+                <tbody nz-tbody>
+                    <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                        <td nz-td [nzCheckbox]="true">
+                            <label nz-checkbox [(ngModel)]="data.checked"
+                                (ngModelChange)="refChecked()">
+                            </label>
+                        </td>
+                        <td nz-td>{{data.name}}</td>
+                        <td nz-td>{{data.typeName}}</td>
+                        <td nz-td>{{data.permissionValue}}</td>
+                        <td nz-td>{{data.uri}}</td>
+                        <td nz-td>{{data.icon}}</td>
+                        <td nz-td>{{data.translate}}</td>
+                        <td nz-td>{{data.link}}</td>
+                        <td nz-td>{{data.createTime | _date: 'YYYY年MM月DD日'}}</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </nz-card>
+
+        <nz-card nzTitle="Permission" *ngIf="showTree">
+            <nz-input [nzType]="'search'" [nzPlaceHolder]="'input search text'" [(ngModel)]="q" (ngModelChange)="filterNodes()"></nz-input>
+            <nz-tree #tree [nzNodes]="nodes"
+                     [nzOptions]="options"
+                     (nzEvent)="onEvent($event)"></nz-tree>
+        </nz-card>
+    </div>
+</div>

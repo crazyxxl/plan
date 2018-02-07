@@ -1,0 +1,58 @@
+{
+    "app": {
+        "name": "Author",
+        "description": "Ng-zorro admin panel front-end framework"
+    },
+    "user": {
+        "name": "Mr.zhou",
+        "avatar": "./assets/img/zorro.svg",
+        "email": "Mr.zhouy@foxmail.com"
+    },
+    "menu": [{
+        "text": "组件",
+        "translate": "component",
+        "children": [{
+            "text": "角色用户管理",
+            "translate": null,
+            "link": "/author",
+            "icon": "icon-note",
+            "children": [{
+                "text": "角色管理",
+                "translate": null,
+                "link": "/author/role",
+                "icon": "",
+                "children": []
+            }, {
+                "text": "用户管理",
+                "translate": null,
+                "link": "/author/user",
+                "icon": "",
+                "children": []
+            }]
+        },{
+            "text": "系统组织管理",
+            "translate": null,
+            "link": "/author",
+            "icon": "icon-graph",
+            "children": [{
+                "text": "系统管理",
+                "translate": null,
+                "link": "/author/system"
+            }, {
+                "text": "组织管理",
+                "translate": null,
+                "link": "/author/organization"
+            }]
+        },{
+            "text": "权限资源管理",
+            "translate": null,
+            "link": "/author",
+            "icon": "icon-magic-wand",
+            "children": [{
+                "text": "权限管理",
+                "translate": null,
+                "link": "/author/permission"
+            }]
+        }]
+    }]
+}
